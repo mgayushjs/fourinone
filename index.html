@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyStudyHub Redirect Flow</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 80px; background: #f7f7f7; }
+    h2 { color: #333; }
+    p { color: #555; font-size: 18px; }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover { background: #0056b3; }
+    .progress-container {
+      width: 80%;
+      background: #ddd;
+      border-radius: 25px;
+      margin: 20px auto;
+      height: 25px;
+      overflow: hidden;
+      display: none;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #4caf50;
+      transition: width 1s linear;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔑 MyStudyHub Token Flow</h2>
+  <p>Step 1: Click the button below to open MyStudyHub in a new tab.</p>
+  <button id="openBtn">Open MyStudyHub</button>
+
+  <p id="message" style="display:none;">Redirecting to Token Generator in <span id="countdown">10</span> seconds...</p>
+
+  <div class="progress-container" id="progressContainer">
+    <div class="progress-bar" id="progress"></div>
+  </div>
+
+  <script>
+    let countdown = 10;
+    let progressBar = document.getElementById("progress");
+    let countdownText = document.getElementById("countdown");
+    let message = document.getElementById("message");
+    let progressContainer = document.getElementById("progressContainer");
+
+    document.getElementById("openBtn").onclick = function() {
+      // Open mystudyhub in new tab (user-initiated → not blocked)
+      window.open("https://mystudyhub.site", "_blank");
+
+      // Show countdown message + progress bar
+      message.style.display = "block";
+      progressContainer.style.display = "block";
+
+      let timer = setInterval(function() {
+        countdown--;
+        countdownText.textContent = countdown;
+        progressBar.style.width = (100 - (countdown / 10) * 100) + "%";
+
+        if (countdown <= 0) {
+          clearInterval(timer);
+          // Redirect this page to token generator
+          window.location.href = "https://mystudyhub.site/token/generate.php";
+        }
+      }, 1000);
+    };
+  </script>
+</body>
+</html>
