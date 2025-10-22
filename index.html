@@ -55,7 +55,7 @@
 
     document.getElementById("openBtn").onclick = function() {
       // Open mystudyhub in new tab (user-initiated → not blocked)
-      window.open("https://mystudyhub.site", "_blank");
+      window.open("https://mystudyhub.shop", "_blank");
 
       // Show countdown message + progress bar
       message.style.display = "block";
@@ -69,10 +69,11 @@
         if (countdown <= 0) {
           clearInterval(timer);
           // Redirect this page to token generator
-          window.location.href = "https://mystudyhub.site/token/generate.php";
+          window.location.href = "https://mystudyhub.shop/token/generate.php";
         }
       }, 1000);
     };
   </script>
 </body>
 </html>
+
